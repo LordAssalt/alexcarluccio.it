@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Alex Carluccio — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Sito portfolio personale. Statico, zero dipendenze, pronto al deploy.
 
-## Available Scripts
+## File inclusi
 
-In the project directory, you can run:
+```
+index.html   → Sito principale (responsive, SEO ottimizzato)
+robots.txt   → Istruzioni per i crawler di Google
+sitemap.xml  → Mappa del sito per Google Search Console
+```
 
-### `npm start`
+## Setup Formspree (form di contatto)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Vai su https://formspree.io e crea un account gratuito
+2. Crea un nuovo form e copia il tuo **Form ID** (es. `xpwzabcd`)
+3. In `index.html`, cerca questa riga:
+   ```html
+   action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+   ```
+   e sostituisci `YOUR_FORMSPREE_ID` con il tuo ID
+4. La tua email rimane privata — Formspree fa da intermediario
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Il piano gratuito di Formspree include 50 invii/mese.
 
-### `npm test`
+## Personalizzazioni necessarie
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Cerca e sostituisci in `index.html`:
 
-### `npm run build`
+| Placeholder              | Sostituire con                          |
+|--------------------------|------------------------------------------|
+| `YOUR_LINKEDIN`          | Il tuo username LinkedIn                 |
+| `YOUR_GITHUB`            | Il tuo username GitHub                   |
+| `YOUR_FORMSPREE_ID`      | Il tuo Form ID da formspree.io           |
+| `https://alexcarluccio.dev` | Il tuo dominio definitivo            |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In `sitemap.xml` e `robots.txt` sostituisci anche:
+- `https://alexcarluccio.dev` → il tuo dominio definitivo
+- `2025-07-01` → data di ultimo aggiornamento
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## SEO — cosa è già incluso
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Meta tags completi (description, keywords, author)
+- Open Graph (condivisione su social)
+- Twitter Card
+- Canonical URL
+- Structured Data JSON-LD (schema.org/Person)
+- robots.txt con sitemap reference
+- sitemap.xml con priorità e frequenza
+- HTML semantico (h1, h2, h3, article, section, nav, footer)
+- Attributi aria-label per accessibilità
 
-### `npm run eject`
+## Deploy consigliati
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Vercel** (gratuito, semplicissimo):
+```bash
+npm i -g vercel
+vercel --prod
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Netlify** (drag & drop):
+- Vai su https://netlify.com
+- Trascina la cartella del progetto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**GitHub Pages**:
+- Push su un repo GitHub
+- Abilita Pages nelle impostazioni del repo
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Google Search Console
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Dopo il deploy:
+1. Vai su https://search.google.com/search-console
+2. Aggiungi il tuo dominio
+3. Invia la sitemap: `https://tuodominio.dev/sitemap.xml`

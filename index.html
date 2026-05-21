@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Alex Carluccio — Software Engineer specializzato in sistemi cloud-based ed event-driven. Background in Computer Engineering e Artificial Intelligence. Lecce, Italia.">
+<meta name="keywords" content="Alex Carluccio, Software Engineer, Cloud Engineer, Azure, Python, C++, AI, Lecce, Leonardo Spa, Porsche Engineering">
+<meta name="author" content="Alex Carluccio">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alexcarluccio.dev/">
+<meta property="og:title" content="Alex Carluccio — Software Engineer">
+<meta property="og:description" content="Software Engineer specializzato in cloud-based ed event-driven systems. AI & Computer Engineering background.">
+<meta property="og:image" content="https://alexcarluccio.dev/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alex Carluccio — Software Engineer">
+<meta name="twitter:description" content="Software Engineer specializzato in cloud-based ed event-driven systems.">
+<link rel="canonical" href="https://alexcarluccio.dev/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0a0f'/><rect width='32' height='32' rx='6' fill='none' stroke='%234f8ef7' stroke-width='1.5'/><text x='16' y='22' font-family='monospace' font-size='12' font-weight='700' fill='%234f8ef7' text-anchor='middle' letter-spacing='-0.5'>AC</text></svg>">
+<title>Alex Carluccio — Software Engineer</title>
+ 
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alex Carluccio",
+  "jobTitle": "Software Engineer",
+  "url": "https://alexcarluccio.dev",
+  "sameAs": [
+    "https://linkedin.com/in/YOUR_LINKEDIN",
+    "https://github.com/YOUR_GITHUB"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lecce",
+    "addressCountry": "IT"
+  },
+  "alumniOf": [
+    {"@type": "CollegeOrUniversity", "name": "Politecnico di Torino"},
+    {"@type": "CollegeOrUniversity", "name": "Università del Salento"}
+  ],
+  "knowsAbout": ["Cloud Engineering", "Azure", "Python", "C++", "Kubernetes", "Event-driven Systems", "Machine Learning"]
+}
+</script>
+ 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+ 
+<style>
+/* ===================== RESET & BASE ===================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;
+  --surface:#111118;
+  --border:#1e1e2e;
+  --border-hover:#2e2e45;
+  --accent:#4f8ef7;
+  --accent-dim:rgba(79,142,247,.08);
+  --text:#e8e8f0;
+  --muted:#6b6b80;
+  --mono:'DM Mono',monospace;
+  --sans:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+ 
+/* ===================== GLOW ===================== */
+.glow{
+  position:fixed;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(79,142,247,.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+  top:-300px;left:-300px;
+  will-change:transform;
+  transition:transform .15s ease;
+}
+@media(max-width:768px){.glow{display:none}}
+ 
+/* ===================== NAV ===================== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.1rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  background:rgba(10,10,15,.85);
+}
+.nav-logo{
+  font-family:var(--mono);font-size:13px;
+  color:var(--accent);letter-spacing:.1em;
+  text-decoration:none;
+}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{
+  font-family:var(--mono);font-size:12px;
+  color:var(--muted);text-decoration:none;
+  letter-spacing:.05em;transition:color .2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-social{display:flex;gap:1rem}
+.nav-social a{
+  color:var(--muted);text-decoration:none;
+  font-size:16px;transition:color .2s;
+  display:flex;align-items:center;
+}
+.nav-social a:hover{color:var(--accent)}
+.nav-social svg{width:18px;height:18px;fill:currentColor}
+ 
+/* Hamburger */
+.hamburger{
+  display:none;
+  flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+}
+.hamburger span{
+  display:block;width:22px;height:1.5px;
+  background:var(--text);transition:all .3s;
+}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+ 
+.mobile-menu{
+  display:none;position:fixed;top:56px;left:0;right:0;
+  background:rgba(10,10,15,.98);
+  border-bottom:1px solid var(--border);
+  z-index:99;padding:1.5rem 2rem;
+  flex-direction:column;gap:1.2rem;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:var(--mono);font-size:14px;
+  color:var(--muted);text-decoration:none;
+  letter-spacing:.05em;transition:color .2s;
+}
+.mobile-menu a:hover{color:var(--accent)}
+.mobile-social{display:flex;gap:1rem;padding-top:.5rem;border-top:1px solid var(--border)}
+.mobile-social a{color:var(--muted);text-decoration:none;display:flex;align-items:center;transition:color .2s}
+.mobile-social a:hover{color:var(--accent)}
+.mobile-social svg{width:20px;height:20px;fill:currentColor}
+ 
+@media(max-width:768px){
+  nav{padding:.9rem 1.5rem}
+  .nav-links,.nav-social{display:none}
+  .hamburger{display:flex}
+}
+ 
+/* ===================== SECTIONS ===================== */
+section{position:relative;z-index:1}
+.divider{width:100%;height:1px;background:var(--border)}
+.section-wrap{padding:5rem 2.5rem;max-width:900px;margin:0 auto}
+@media(max-width:768px){.section-wrap{padding:3.5rem 1.5rem}}
+ 
+.section-label{
+  font-family:var(--mono);font-size:11px;
+  color:var(--accent);letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+ 
+/* ===================== HERO ===================== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;padding:7rem 2.5rem 4rem;
+  max-width:900px;margin:0 auto;
+}
+@media(max-width:768px){.hero{padding:6rem 1.5rem 3rem;min-height:90vh}}
+ 
+.hero-tag{
+  font-family:var(--mono);font-size:11px;color:var(--accent);
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;
+  opacity:0;animation:fadeUp .6s .2s forwards;
+}
+.hero-name{
+  font-size:clamp(3rem,10vw,7rem);font-weight:800;
+  line-height:.92;letter-spacing:-.04em;margin-bottom:1rem;
+  opacity:0;animation:fadeUp .6s .4s forwards;
+}
+.hero-name span{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.2)}
+.hero-role{
+  font-family:var(--mono);font-size:13px;color:var(--muted);
+  margin-bottom:2rem;opacity:0;animation:fadeUp .6s .6s forwards;
+}
+.hero-desc{
+  max-width:520px;font-size:15px;line-height:1.75;
+  color:rgba(232,232,240,.65);margin-bottom:2.5rem;
+  opacity:0;animation:fadeUp .6s .8s forwards;
+}
+.hero-cta{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .6s 1s forwards;
+}
+.hero-tags{
+  display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem;
+  opacity:0;animation:fadeUp .6s .7s forwards;
+}
+.hero-badge{
+  font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+  padding:.35rem .8rem;border:1px solid var(--border);
+  color:var(--muted);border-radius:2px;
+}
+ 
+.btn{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  padding:.8rem 1.8rem;border-radius:2px;text-decoration:none;
+  transition:all .2s;cursor:pointer;border:none;display:inline-block;
+}
+.btn-primary{background:var(--accent);color:#000;font-weight:500}
+.btn-primary:hover{background:#7aa8f5;transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+ 
+/* ===================== EXPERIENCE ===================== */
+.exp-grid{display:flex;flex-direction:column;gap:0}
+.exp-item{
+  display:grid;grid-template-columns:130px 1fr;gap:2rem;
+  padding:2rem 0;border-bottom:1px solid var(--border);
+  transition:all .3s;
+}
+.exp-item:first-child{border-top:1px solid var(--border)}
+.exp-item:hover{padding-left:.4rem;background:var(--accent-dim)}
+.exp-time{
+  font-family:var(--mono);font-size:11px;
+  color:var(--muted);line-height:1.6;padding-top:.2rem;
+}
+.exp-company{
+  font-family:var(--mono);font-size:10px;color:var(--accent);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;
+}
+.exp-title{font-size:16px;font-weight:600;margin-bottom:.8rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.exp-bullets li{
+  font-size:13px;color:rgba(232,232,240,.6);
+  line-height:1.65;padding-left:1rem;position:relative;
+}
+.exp-bullets li::before{
+  content:'▸';position:absolute;left:0;
+  color:var(--accent);font-size:10px;top:.2rem;
+}
+@media(max-width:600px){
+  .exp-item{grid-template-columns:1fr;gap:.5rem;padding:1.5rem 0}
+  .exp-time{font-size:10px}
+}
+ 
+/* ===================== EDUCATION ===================== */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.edu-card{
+  padding:1.5rem;border:1px solid var(--border);
+  position:relative;overflow:hidden;transition:border-color .3s;
+}
+.edu-card::after{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;background:var(--accent);
+}
+.edu-card:hover{border-color:var(--border-hover)}
+.edu-deg{font-size:14px;font-weight:600;line-height:1.4;margin-bottom:.5rem}
+.edu-uni{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.edu-mark{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:.5rem}
+@media(max-width:600px){.edu-grid{grid-template-columns:1fr}}
+ 
+/* ===================== SKILLS ===================== */
+.skills-cloud{display:flex;flex-wrap:wrap;gap:.6rem}
+.skill-tag{
+  font-family:var(--mono);font-size:11px;
+  padding:.45rem .95rem;border:1px solid var(--border);
+  border-radius:2px;color:var(--muted);
+  transition:all .25s;cursor:default;
+}
+.skill-tag:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+ 
+/* ===================== PROJECTS ===================== */
+.proj-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+}
+.proj-card{
+  background:var(--bg);padding:1.8rem;
+  transition:background .3s;position:relative;overflow:hidden;
+}
+.proj-card:hover{background:var(--surface)}
+.proj-num{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:.8rem}
+.proj-name{font-size:14px;font-weight:600;margin-bottom:.5rem}
+.proj-stack{
+  font-family:var(--mono);font-size:10px;color:var(--accent);
+  margin-bottom:.5rem;letter-spacing:.06em;
+}
+.proj-desc{font-size:12px;color:rgba(232,232,240,.5);line-height:1.6}
+@media(max-width:600px){.proj-grid{grid-template-columns:1fr}}
+ 
+/* ===================== PUBLICATIONS ===================== */
+.pub-list{display:flex;flex-direction:column;gap:1.2rem}
+.pub-item{
+  padding:1.4rem;border:1px solid var(--border);
+  transition:border-color .3s;
+}
+.pub-item:hover{border-color:var(--border-hover)}
+.pub-venue{
+  font-family:var(--mono);font-size:10px;color:var(--accent);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.5rem;
+}
+.pub-title{font-size:14px;font-weight:600;line-height:1.45}
+ 
+/* ===================== CONTACT / FORM ===================== */
+.contact-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
+@media(max-width:768px){.contact-layout{grid-template-columns:1fr;gap:2rem}}
+ 
+.contact-info{display:flex;flex-direction:column;gap:1.5rem}
+.contact-info-text{font-size:15px;line-height:1.8;color:rgba(232,232,240,.6)}
+.contact-links{display:flex;flex-direction:column;gap:.8rem;margin-top:.5rem}
+.contact-link{
+  display:flex;align-items:center;gap:.8rem;
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  text-decoration:none;transition:color .2s;
+}
+.contact-link:hover{color:var(--accent)}
+.contact-link svg{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+.contact-dot{
+  width:6px;height:6px;background:var(--accent);
+  border-radius:50%;flex-shrink:0;
+}
+ 
+/* Formspree form */
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+ 
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em}
+.form-group input,
+.form-group textarea{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--text);font-family:var(--mono);font-size:13px;
+  padding:.75rem 1rem;border-radius:2px;outline:none;
+  transition:border-color .2s;resize:none;
+  -webkit-appearance:none;
+}
+.form-group input:focus,
+.form-group textarea:focus{border-color:var(--accent)}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:var(--muted)}
+ 
+.form-status{
+  font-family:var(--mono);font-size:12px;padding:.6rem 1rem;
+  border-radius:2px;display:none;
+}
+.form-status.success{
+  background:rgba(31,180,100,.1);border:1px solid rgba(31,180,100,.3);
+  color:#4fcf8a;display:block;
+}
+.form-status.error{
+  background:rgba(220,60,60,.1);border:1px solid rgba(220,60,60,.3);
+  color:#f07070;display:block;
+}
+ 
+/* ===================== FOOTER ===================== */
+footer{
+  padding:2rem 2.5rem;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;position:relative;z-index:1;
+}
+footer span{font-family:var(--mono);font-size:11px;color:var(--muted)}
+ 
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+ 
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+ 
+<div class="glow" id="glow" aria-hidden="true"></div>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo" aria-label="Alex Carluccio home">AC // dev</a>
+  <div class="nav-links" role="navigation" aria-label="Menu principale">
+    <a href="#experience">exp</a>
+    <a href="#skills">skills</a>
+    <a href="#projects">projects</a>
+    <a href="#publications">papers</a>
+    <a href="#contact">contact</a>
+  </div>
+  <div class="nav-social" aria-label="Social links">
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <!-- GitHub -->
+    <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Apri menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+ 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Menu mobile">
+  <a href="#experience" class="mobile-link">Esperienze</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#projects" class="mobile-link">Progetti</a>
+  <a href="#publications" class="mobile-link">Pubblicazioni</a>
+  <a href="#contact" class="mobile-link">Contatti</a>
+  <div class="mobile-social">
+    <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+    </a>
+    <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+    </a>
+  </div>
+</div>
+ 
+<!-- HERO -->
+<section class="hero" aria-label="Introduzione">
+  <p class="hero-tag">Software Engineer · Cloud · AI</p>
+  <h1 class="hero-name">Alex<br><span>Carluccio</span></h1>
+  <p class="hero-role">// determined · rational · creative</p>
+  <div class="hero-tags">
+    <span class="hero-badge">Azure Cloud</span>
+    <span class="hero-badge">Event-Driven</span>
+    <span class="hero-badge">C++ / Python</span>
+    <span class="hero-badge">AI & ML</span>
+    <span class="hero-badge">Lecce, IT</span>
+  </div>
+  <p class="hero-desc">Software engineer specializzato in sistemi cloud-based ed event-driven. Background in Computer Engineering e Artificial Intelligence. Attualmente @ Leonardo Spa.</p>
+  <div class="hero-cta">
+    <a href="#contact" class="btn btn-primary">Scrivimi</a>
+    <a href="#experience" class="btn btn-outline">Esperienze →</a>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience" aria-label="Esperienze lavorative">
+  <div class="section-wrap">
+    <h2 class="section-label">Esperienze</h2>
+    <div class="exp-grid">
+
+      <article class="exp-item reveal">
+        <div class="exp-time">Lug 2025<br>— presente</div>
+        <div>
+          <p class="exp-company">Leonardo Spa</p>
+          <h3 class="exp-title">Software Engineer</h3>
+          <ul class="exp-bullets">
+            <li>Manutenzione e ottimizzazione di componenti CSCI in C++, garantendo portabilità su diverse versioni di Red Hat Linux</li>
+            <li>Sviluppo su FTE2C (Force Threat Evaluation and Effects Coordination)</li>
+            <li>Contributo al progetto Michelangelo Dome — sistema integrato di difesa multi-dominio</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="exp-item reveal">
+        <div class="exp-time">Set 2023<br>— Giu 2025</div>
+        <div>
+          <p class="exp-company">NTC Srl · Porsche Engineering</p>
+          <h3 class="exp-title">Cloud &amp; Software Engineer</h3>
+          <ul class="exp-bullets">
+            <li>Design dell'architettura cloud e migrazione da infrastruttura on-prem ad Azure, garantendo scalabilità, sicurezza e affidabilità</li>
+            <li>Manutenzione di data pipeline near real-time per attività di testing su veicoli</li>
+            <li>Responsabile di servizi event-driven su cloud e on-prem</li>
+            <li>Sviluppo PoC web app per lifecycle management</li>
+            <li>R&D su prototipo di sottomarino autonomo a guida automatica (scala ridotta)</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education" aria-label="Formazione">
+  <div class="section-wrap">
+    <h2 class="section-label">Formazione</h2>
+    <div class="edu-grid reveal">
+      <article class="edu-card">
+        <h3 class="edu-deg">Master in AI &amp; Data Analytics — Computer Engineering</h3>
+        <p class="edu-uni">Politecnico di Torino</p>
+        <p class="edu-mark">2021–2023 · 110/110</p>
+      </article>
+      <article class="edu-card">
+        <h3 class="edu-deg">Laurea Triennale in Ingegneria Informatica</h3>
+        <p class="edu-uni">Università del Salento</p>
+        <p class="edu-mark">2021–2023 · 110L/110</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills" aria-label="Competenze tecniche">
+  <div class="section-wrap">
+    <h2 class="section-label">Tech Stack</h2>
+    <div class="skills-cloud reveal" role="list">
+      <span class="skill-tag" role="listitem">Azure</span>
+      <span class="skill-tag" role="listitem">Cloud Migrations</span>
+      <span class="skill-tag" role="listitem">CI/CD</span>
+      <span class="skill-tag" role="listitem">Linux · Bash</span>
+      <span class="skill-tag" role="listitem">Event-Driven Systems</span>
+      <span class="skill-tag" role="listitem">Kubernetes</span>
+      <span class="skill-tag" role="listitem">Docker</span>
+      <span class="skill-tag" role="listitem">Python</span>
+      <span class="skill-tag" role="listitem">JavaScript</span>
+      <span class="skill-tag" role="listitem">C++</span>
+      <span class="skill-tag" role="listitem">SQL · RDBMS · NoSQL</span>
+      <span class="skill-tag" role="listitem">React</span>
+      <span class="skill-tag" role="listitem">Node.js</span>
+      <span class="skill-tag" role="listitem">RESTful API</span>
+      <span class="skill-tag" role="listitem">HTML · CSS</span>
+      <span class="skill-tag" role="listitem">Machine Learning</span>
+      <span class="skill-tag" role="listitem">CISCO Packet Tracer</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects" aria-label="Progetti universitari">
+  <div class="section-wrap">
+    <h2 class="section-label">Progetti</h2>
+    <div class="proj-grid reveal">
+
+      <article class="proj-card">
+        <p class="proj-num">01</p>
+        <h3 class="proj-name">PatchCore Anomaly Detection</h3>
+        <p class="proj-stack">Python · Machine Learning · Computer Vision</p>
+        <p class="proj-desc">Advanced ML per riconoscimento e segmentazione di anomalie in contesti industriali.</p>
+      </article>
+
+      <article class="proj-card">
+        <p class="proj-num">02</p>
+        <h3 class="proj-name">Pulsar Recognizer Analysis</h3>
+        <p class="proj-stack">Python · Scikit-learn · HTRU2 Dataset</p>
+        <p class="proj-desc">Valutazione di classificatori e tecniche di preprocessing per la rilevazione di pulsar.</p>
+      </article>
+
+      <article class="proj-card">
+        <p class="proj-num">03</p>
+        <h3 class="proj-name">LPC1768 PingPong Game</h3>
+        <p class="proj-stack">C · Assembly · ARM LPC1768</p>
+        <p class="proj-desc">Gioco single e multiplayer sviluppato su board ARM Land Tiger LPC1768.</p>
+      </article>
+
+      <article class="proj-card">
+        <p class="proj-num">04</p>
+        <h3 class="proj-name">Autonomous Submarine R&amp;D</h3>
+        <p class="proj-stack">Embedded · Robotics · R&amp;D</p>
+        <p class="proj-desc">Prototipo di sottomarino a guida autonoma (scala ridotta) per evento competitivo.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PUBLICATIONS -->
+<section id="publications" aria-label="Pubblicazioni scientifiche">
+  <div class="section-wrap">
+    <h2 class="section-label">Pubblicazioni</h2>
+    <div class="pub-list reveal">
+
+      <article class="pub-item">
+        <p class="pub-venue">ETT 2024 · Transactions on Emerging Telecommunications Technologies</p>
+        <h3 class="pub-title">Privacy-preserving WiFi-based crowd monitoring</h3>
+      </article>
+
+      <article class="pub-item">
+        <p class="pub-venue">ICT-DM 2023 · Int. Conference on ICT for Disaster Management</p>
+        <h3 class="pub-title">Privacy-Aware Crowd Monitoring and WiFi Traffic Emulation for Effective Crisis Management</h3>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact" aria-label="Contatti">
+  <div class="section-wrap">
+    <h2 class="section-label">Contatti</h2>
+    <div class="contact-layout reveal">
+
+      <div class="contact-info">
+        <p class="contact-info-text">Sono aperto a nuove opportunità, collaborazioni e conversazioni interessanti. Scrivimi direttamente tramite il form.</p>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/alexcarluccio" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            linkedin.com/in/alexcarluccio
+          </a>
+          <a href="https://github.com/LordAssalt" class="contact-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            github.com/LordAssalt
+          </a>
+          <div class="contact-link">
+            <span class="contact-dot"></span>
+            Lecce, Italia
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMSPREE FORM -->
+      <!-- 
+        ISTRUZIONI FORMSPREE:
+        1. Registrati su https://formspree.io
+        2. Crea un nuovo form
+        3. Sostituisci YOUR_FORMSPREE_ID con il tuo ID (es. xpwzabcd)
+        4. Il form invierà le email alla tua casella senza esporla
+      -->
+      <form
+        class="contact-form"
+        id="contact-form"
+        action="https://formspree.io/f/xnjrpeze"
+        method="POST"
+        novalidate
+      >
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" placeholder="Mario Rossi" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="mario@email.com" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="subject">Oggetto</label>
+          <input type="text" id="subject" name="subject" placeholder="Di cosa vuoi parlarmi?">
+        </div>
+        <div class="form-group">
+          <label for="message">Messaggio</label>
+          <textarea id="message" name="message" rows="5" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
+        </div>
+        <!-- Honeypot anti-spam -->
+        <input type="text" name="_gotcha" style="display:none">
+        <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start">Invia messaggio</button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Alex Carluccio © 2025</span>
+  <span>Lecce, Italia · Software Engineer</span>
+</footer>
+
+<script>
+// Glow cursor
+const glow = document.getElementById('glow');
+if(glow && window.matchMedia('(min-width:769px)').matches){
+  document.addEventListener('mousemove', e => {
+    glow.style.transform = `translate(${e.clientX - 300}px,${e.clientY - 300}px)`;
+  });
+}
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', open);
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  });
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, {threshold: 0.1});
+revealEls.forEach(el => observer.observe(el));
+
+// Formspree async submit
+const form = document.getElementById('contact-form');
+const status = document.getElementById('form-status');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = form.querySelector('button[type=submit]');
+  btn.textContent = 'Invio...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {Accept: 'application/json'}
+    });
+    if(res.ok){
+      status.textContent = '✓ Messaggio inviato! Ti rispondo al più presto.';
+      status.className = 'form-status success';
+      form.reset();
+    } else {
+      throw new Error();
+    }
+  } catch {
+    status.textContent = '✗ Qualcosa è andato storto. Riprova o scrivimi su LinkedIn.';
+    status.className = 'form-status error';
+  }
+  btn.textContent = 'Invia messaggio';
+  btn.disabled = false;
+});
+</script>
+
+</body>
+</html>

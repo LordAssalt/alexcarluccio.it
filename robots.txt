@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Blocca eventuali directory non pubbliche
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+
+# Sitemap
+Sitemap: https://alexcarluccio.dev/sitemap.xml
+
+# Crawl delay opzionale (rimuovi o abbassa se il sito è leggero)
+Crawl-delay: 1
