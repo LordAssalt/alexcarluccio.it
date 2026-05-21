@@ -44,6 +44,7 @@
 }
 </script>
  
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -656,6 +657,8 @@ footer span{font-family:var(--mono);font-size:11px;color:var(--muted)}
         </div>
         <!-- Honeypot anti-spam -->
         <input type="text" name="_gotcha" style="display:none">
+        <!-- reCAPTCHA v2 -->
+        <div class="g-recaptcha" data-sitekey="6LctgvUsAAAAAMrL2Zv-oi2ZftOpXlbuRgDI6hr7" style="margin-top:.5rem"></div>
         <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
         <button type="submit" class="btn btn-primary" style="align-self:flex-start">Invia messaggio</button>
       </form>
@@ -722,8 +725,51 @@ revealEls.forEach(el => observer.observe(el));
 // Formspree async submit
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
+
+function validateForm() {
+  const name = form.querySelector('#name').value.trim();
+  const email = form.querySelector('#email').value.trim();
+  const message = form.querySelector('#message').value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!name) {
+    status.textContent = '✗ Il campo Nome è obbligatorio.';
+    status.className = 'form-status error';
+    return false;
+  }
+  if (!email) {
+    status.textContent = '✗ Il campo Email è obbligatorio.';
+    status.className = 'form-status error';
+    return false;
+  }
+  if (!emailRegex.test(email)) {
+    status.textContent = '✗ Inserisci un indirizzo email valido.';
+    status.className = 'form-status error';
+    return false;
+  }
+  if (!message) {
+    status.textContent = '✗ Il campo Messaggio è obbligatorio.';
+    status.className = 'form-status error';
+    return false;
+  }
+  return true;
+}
+
 form.addEventListener('submit', async e => {
   e.preventDefault();
+  status.textContent = '';
+  status.className = 'form-status';
+
+  if (!validateForm()) return;
+
+  // Controlla che reCAPTCHA sia stato completato
+  const captchaResponse = grecaptcha.getResponse();
+  if (!captchaResponse) {
+    status.textContent = '✗ Completa il CAPTCHA prima di inviare.';
+    status.className = 'form-status error';
+    return;
+  }
+
   const btn = form.querySelector('button[type=submit]');
   btn.textContent = 'Invio...';
   btn.disabled = true;
@@ -733,12 +779,16 @@ form.addEventListener('submit', async e => {
       body: new FormData(form),
       headers: {Accept: 'application/json'}
     });
-    if(res.ok){
+    if (res.ok) {
       status.textContent = '✓ Messaggio inviato! Ti rispondo al più presto.';
       status.className = 'form-status success';
       form.reset();
+      grecaptcha.reset();
     } else {
-      throw new Error();
+      const data = await res.json();
+      const msg = data?.errors?.map(err => err.message).join(', ') || 'Errore sconosciuto';
+      status.textContent = `✗ ${msg}`;
+      status.className = 'form-status error';
     }
   } catch {
     status.textContent = '✗ Qualcosa è andato storto. Riprova o scrivimi su LinkedIn.';
